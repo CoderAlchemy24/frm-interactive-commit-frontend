@@ -6,11 +6,11 @@ export default function PanelB({ user, isVisible, targetId, onReplySubmit, isSub
   const windowWidth = window.innerWidth;
   const panelStyle = windowWidth <= 768
      ? variant === 'A'
-       ? { width: '94%', marginLeft: '0px' }
+       ? { width: '92%', marginLeft: '0px' }
        : { width: '88%', marginLeft: '20px' }
      : variant === 'A'
        ? { width: '740px', marginLeft: '-40px'}
-       : { width: '675px', marginLeft: '50px' };
+       : { width: '655px', marginLeft: '50px' };
 
   useEffect(() => {
     if (isVisible) {

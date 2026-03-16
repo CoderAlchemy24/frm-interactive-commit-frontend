@@ -6,11 +6,11 @@ export default function PanelA({ comment, onReplyClick, onVoteClick, isVotePendi
  const panelStyle =
    windowWidth <= 768
      ? variant === 'A'
-       ? { width: '94%', marginLeft: '0px' }
+       ? { width: '92%', marginLeft: '0px' }
        : { width: '88%', marginLeft: '20px' }
      : variant === 'A'
        ? { width: '720px', marginLeft: '-20px' }
-       : { width: '650px', marginLeft: '50px' };
+       : { width: '660px', marginLeft: '50px' };
 
  function replyClickHandler() {
     onReplyClick(comment.id);

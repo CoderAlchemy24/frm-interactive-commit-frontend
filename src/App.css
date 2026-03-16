@@ -27,14 +27,14 @@
   background: var(--purple-200);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .app {
-    width: 96%;
+    width: 98%;
     margin: 10px auto;
     padding: 0 10px;
   }
 
   .reply-thread::before {
-    left: 10px;
+    left: -6px;
   }
 }

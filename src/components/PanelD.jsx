@@ -11,7 +11,7 @@ export default function PanelD({ comment, user, isVisible, variant, onUpdateClic
        : { width: '88%', marginLeft: '20px' }
      : variant === 'A'
        ? { width: '720px', marginLeft: '-20px'}
-       : { width: '675px', marginLeft: '50px' };
+       : { width: '665px', marginLeft: '50px' };
 
   useEffect(() => {
     setDraft(comment?.content ?? '');
