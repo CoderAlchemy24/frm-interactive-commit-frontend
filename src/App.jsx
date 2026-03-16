@@ -6,13 +6,15 @@ import PanelC from './components/PanelC';
 import PanelD from './components/PanelD';
 
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://frm-interactive-comments-server.onrender.com';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState({});
   const [comments, setComments] = useState([]);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [requestError, setRequestError] = useState('');
   const [activeReplyId, setActiveReplyId] = useState(null);
   const [activeEditId, setActiveEditId] = useState(null);
   const [pendingVoteIds, setPendingVoteIds] = useState(() => new Set());
@@ -30,12 +32,18 @@ function App() {
 
       const data = await response.json();
       setComments(data);
+      setRequestError('');
+      return true;
     } catch (error) {
       console.error('Error fetching comments:', error);
+      setRequestError('Unable to load comments right now. Please refresh and try again.');
+      return false;
     }
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchCurrentUser = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/users`);
@@ -45,16 +53,28 @@ function App() {
         }
 
         const data = await response.json();
-        setCurrentUser(data);
+        if (isMounted) {
+          setCurrentUser(data);
+        }
       } catch (error) {
         console.error('Error fetching current user:', error);
       }
     };
-     fetchCurrentUser();
-  }, []);
 
-  useEffect(() => {
-    fetchComments();
+    const loadInitialData = async () => {
+      setIsInitialLoading(true);
+      await Promise.all([fetchCurrentUser(), fetchComments()]);
+
+      if (isMounted) {
+        setIsInitialLoading(false);
+      }
+    };
+
+    loadInitialData();
+
+    return () => {
+      isMounted = false;
+    };
   }, [fetchComments]);
 
  const handleReplyToggle = (id) => {
@@ -279,10 +299,26 @@ function App() {
 
   const isCurrentUser = (item) =>
     currentUser?.username && currentUser.username === item?.user?.username;
-    
+
+  if (isInitialLoading) {
+    return (
+      <section className="app app--status">
+        <p className="app-status" role="status">Loading comments...</p>
+      </section>
+    );
+  }
+
  
   return (
     <section className="app">
+      {requestError && (
+        <p className="app-status app-status--error" role="alert">{requestError}</p>
+      )}
+
+      {!requestError && comments.length === 0 && (
+        <p className="app-status" role="status">No comments available.</p>
+      )}
+
       {comments.map((comment) => {
         const ownComment = isCurrentUser(comment);
 

@@ -10,6 +10,26 @@
     gap: 0;
 }
 
+.app--status {
+  min-height: 220px;
+}
+
+.app-status {
+  width: 100%;
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: var(--white, #ffffff);
+  color: var(--grey-500, #67727e);
+  text-align: center;
+}
+
+.app-status--error {
+  border: 1px solid #f3b3b3;
+  background: #ffeaea;
+  color: #8f2222;
+}
+
 .reply-thread {
   position: relative;
   margin-left: 0px;
