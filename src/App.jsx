@@ -6,9 +6,7 @@ import PanelC from './components/PanelC';
 import PanelD from './components/PanelD';
 
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV
-  ? 'http://localhost:3000'
-  : 'https://frm-interactive-comments-server.onrender.com');
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://frm-interactive-comments-server.onrender.com';
 
 
 function App() {
