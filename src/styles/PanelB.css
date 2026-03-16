@@ -1,54 +1,52 @@
-.panelB{
-     margin:16px 16px 16px 24px;
-     padding: 24px 16px 24px 16px;
-    width: 100%;
-    height:100%;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+.panelB {
+    box-sizing: border-box;
+    width: calc(100% - 32px);
+    max-width: 720px;
+    margin: 16px;
+    padding: 24px 16px;
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    align-items: start;
     gap: 16px;
-   
     background-color: #fff;
     border-radius: 8px;
     border: 2px solid var(--purple-600);
-
-
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.panelB img.avatar{
+.panelB--reply {
+    width: calc(100% - 66px);
+    margin-left: 50px;
+    margin-right: 16px;
+}
+
+.panelB img.avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin: 5px;
 }
 
-.panelB textarea.comment-text{
-    width: 72%;
-    height: 100px;
-    margin: 5px;
+.panelB textarea.comment-text {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100px;
     padding: 8px;
     border: 1px solid var(--grey-500);
     border-radius: 8px;
     background-color: var(--grey-50);
-  
-
+    resize: vertical;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
 }
 
-.panelB button{
+.panelB button {
     padding: 8px 16px;
-    margin: 5px;
     border: none;
     border-radius: 8px;
     background-color: var(--purple-600);
@@ -57,25 +55,38 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
+    text-transform: capitalize;
 }
 
-.panelB button:hover{
+.panelB button:hover {
     background-color: var(--purple-200);
     cursor: pointer;
 }
 
-.panelB {
-    width: 80%;
-    height: auto;
-    margin: 10px auto;
-    padding: 0 10px;
+@media screen and (max-width: 768px) {
+  .panelB,
+  .panelB--reply {
+    width: calc(100% - 20px);
+    max-width: none;
+    margin: 10px;
+    padding: 16px;
+    grid-template-columns: 40px minmax(0, 1fr);
   }
 
- @media screen and (max-width: 600px) {
-  .panelB {
-    width: 96%;
-    height: auto;
-    margin: 10px auto;
-    padding: 0 10px;
+  .panelB textarea.comment-text {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .panelB img.avatar {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+  }
+
+  .panelB button {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
   }
 }

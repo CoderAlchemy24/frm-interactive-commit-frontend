@@ -1,25 +1,30 @@
 .dialog-overlay{
-    width: 400px;
-    height: 252px;
-    background: #FFFFFF;
-    padding:50px;
-    border: 1px solid var(--grey-500);
-    border-radius: 8px;
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(51, 66, 83, 0.45);
+    z-index: 1000;
+    box-sizing: border-box;
 }
 
 .dialog{
-    height: 200px;
+    box-sizing: border-box;
+    width: min(100%, 400px);
+    min-height: 252px;
+    background: #FFFFFF;
+    padding: 32px;
+    border: 1px solid var(--grey-500);
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: flex-start;
     gap: var(--spacing-300);
-    margin: 0 auto;}
+    margin: 0 auto;
+}
 
 .dialog h2{
     color: #000;
@@ -71,3 +76,13 @@
     background-color: var(--pink-400);  
 }
 
+@media screen and (max-width: 768px) {
+    .dialog-overlay{
+        padding: 16px;
+    }
+
+    .dialog{
+        transform: scale(0.88);
+        transform-origin: center;
+    }
+}

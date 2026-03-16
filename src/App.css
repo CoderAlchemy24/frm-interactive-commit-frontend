@@ -1,17 +1,24 @@
-
-
 .app{
+  box-sizing: border-box;
     width: 720px;
+    max-width: 100%;
     margin: 40px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;    
     align-items: center;
     gap: 0;
+    z-index:5;
 }
 
 .reply-thread {
   position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  isolation: isolate;
   margin-left: 0px;
   padding-left: 0px; 
   
@@ -22,19 +29,32 @@
   position: absolute;
   top: 10px;
   bottom:10px;
-  left: 20px;
+  left: 35px;
   width: 1px;
   background: var(--purple-200);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.reply-thread > * {
+  position: relative;
+  z-index: 1;
 }
 
 @media screen and (max-width: 768px) {
   .app {
-    width: 98%;
+    width: 95%;
     margin: 10px auto;
     padding: 0 10px;
+    z-index: 5;
   }
 
   .reply-thread::before {
-    left: -6px;
+    display: none;
+    top: -15px;
+    bottom: -15px;
+    left: 10px;
+    background: var(--purple-200);
+    z-index:1;
   }
 }

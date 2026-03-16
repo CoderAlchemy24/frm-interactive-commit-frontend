@@ -1,22 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../styles/PanelB.css';
 
 export default function PanelB({ user, isVisible, targetId, onReplySubmit, isSubmitting, variant }) {
   const [draft, setDraft] = useState('');
-  const windowWidth = window.innerWidth;
-  const panelStyle = windowWidth <= 768
-     ? variant === 'A'
-       ? { width: '92%', marginLeft: '0px' }
-       : { width: '88%', marginLeft: '20px' }
-     : variant === 'A'
-       ? { width: '740px', marginLeft: '-40px'}
-       : { width: '655px', marginLeft: '50px' };
-
-  useEffect(() => {
-    if (isVisible) {
-      setDraft('');
-    }
-  }, [isVisible, targetId]);
+  const panelClassName = variant === 'B' ? 'panelB panelB--reply' : 'panelB';
 
   const replyClickHandler = async () => {
     if (!onReplySubmit || isSubmitting) {
@@ -33,7 +20,7 @@ export default function PanelB({ user, isVisible, targetId, onReplySubmit, isSub
   if (!isVisible) return null;
 
   return (
-    <section className="panelB" style={panelStyle}>
+    <section className={panelClassName}>
         <img src={user.image.png} alt="User Avatar" className="avatar" />
         <textarea
           className='comment-text'

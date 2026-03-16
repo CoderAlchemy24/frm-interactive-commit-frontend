@@ -6,7 +6,9 @@ import PanelC from './components/PanelC';
 import PanelD from './components/PanelD';
 
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://frm-interactive-comments-server.onrender.com' || 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV
+  ? 'http://localhost:3000'
+  : 'https://frm-interactive-comments-server.onrender.com');
 
 
 function App() {
@@ -310,6 +312,7 @@ function App() {
 
             {ownComment ? (
               <PanelD
+                key={`edit-${comment.id}-${activeEditId === comment.id ? 'open' : 'closed'}-${comment.content}`}
                 comment={comment}
                 user={currentUser}
                 isVisible={activeEditId === comment.id}
@@ -318,6 +321,7 @@ function App() {
               />
             ) : (
               <PanelB
+                key={`reply-${comment.id}-${activeReplyId === comment.id ? 'open' : 'closed'}`}
                 user={currentUser}
                 isVisible={activeReplyId === comment.id}
                 targetId={comment.id}
@@ -355,6 +359,7 @@ function App() {
 
                       {ownReply ? (
                         <PanelD
+                          key={`edit-${reply.id}-${activeEditId === reply.id ? 'open' : 'closed'}-${reply.content}`}
                           comment={reply}
                           user={currentUser}
                           isVisible={activeEditId === reply.id}
@@ -363,6 +368,7 @@ function App() {
                         />
                       ) : (
                         <PanelB
+                          key={`reply-${reply.id}-${activeReplyId === reply.id ? 'open' : 'closed'}`}
                           user={currentUser}
                           isVisible={activeReplyId === reply.id}
                           targetId={reply.id}

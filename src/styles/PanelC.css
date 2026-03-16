@@ -1,155 +1,202 @@
-.panelC{
-    width:100%;
-    height:167px;
+.panelC {
+    box-sizing: border-box;
+    width: calc(100% - 32px);
+    max-width: 720px;
     background-color: #fff;
     border-radius: 8px;
     color: var(--grey-500);
     display: grid;
-    grid-template-columns: 40px 1fr;
-    
+    grid-template-columns: 40px minmax(0, 1fr);
     gap: 16px;
-   
-    padding: 24px 16px 24px 16px;
-    margin: 20px;
-
+    padding: 24px 16px;
+    margin: 16px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-   
 }
 
-.counter{
-    position: relative;
-    top: 10px;
-    width:40px;
-    height:160px;
+.panelC--reply {
+    width: calc(100% - 66px);
+    margin-left: 50px;
+    margin-right: 16px;
+}
+
+.panelC .counter {
+    width: 40px;
+    min-height: 160px;
     background-color: var(--grey-50);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap:20px;
-
+    gap: 20px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-
 }
 
-.counter span svg{
+.panelC .counter span {
+    display: inline-flex;
+}
+
+.panelC .counter span svg {
     color: var(--purple-600);
 }
 
-.counter span svg:hover{
+.panelC .counter span svg:hover {
     cursor: pointer;
     color: var(--grey-800);
 }
 
-.counter .score{
+.panelC .counter .score {
     color: var(--purple-600);
     font-weight: 500;
 }
 
-.header, .header-left{
-    position:relative;
-    top:-6px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding: 10px 0 10px 0;
+.panelC .main {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+        "header actions"
+        "article article";
+    gap: 16px;
+}
 
+.panelC .header {
+    grid-area: header;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
 }
 
-.username{
+.panelC .header-left {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 16px;
+}
+
+.panelC .username {
     color: var(--grey-500);
     font-weight: 500;
 }
 
-.header img.avatar{
+.panelC .header img.avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
 }
 
-
-.header .btns2{
-    
-    justify-self: flex-end;
-    max-width: 200px;
-    padding: 8px;
-    
-    border: none;
-    
+.panelC .btns2 {
+    grid-area: actions;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap:6px;
-
+    justify-content: flex-end;
+    gap: 12px;
+    flex-shrink: 0;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    
-    color: var(--purple-600)
+    color: var(--purple-600);
 }
 
-.header .btns2 button.delete-button{
-    background-color: #fff;
-    color:var(--pink-400);
+.panelC .btns2 button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font: inherit;
+}
+.panelC .btns2 button.delete-button {
+    color: var(--pink-400);
     text-transform: capitalize;
 }
 
-.header .btns2 button.edit-button{
-    background-color: #fff;
-    color:var(--purple-600);
+.panelC .btns2 button.edit-button {
+    color: var(--purple-600);
     text-transform: capitalize;
 }
 
-.header button:hover{
-    
+.panelC .btns2 button:hover {
     cursor: pointer;
 }
 
-article{
-    position: relative;
-    top:-36px;
-
-    
-    color: var(--color-500);
+.panelC article {
+    grid-area: article;
+    color: var(--grey-500);
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
 }
 
-/* .panelC {
-    width: 80%;
-    height: auto;
-    margin: 10px auto;
-    padding: 0 10px;
-  } */
+.panelC .content {
+    margin: 0;
+}
 
 @media screen and (max-width: 768px) {
-  .panelC {
-    width: 96%;
-    height: fit-content;
-    margin: 10px auto;
-    padding: 5px 10px;
+  .panelC,
+  .panelC--reply {
+    width: calc(100% - 20px);
+    max-width: none;
+    margin: 10px;
+    padding: 16px;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "header header"
+            "article article"
+            "counter actions";
+        align-items: center;
   }
 
- header .btns2 {
-    justify-content: flex-end;
-    align-self:center;
-    gap: 4px;
+    .panelC .main {
+        display: contents;
   }
 
-  header .btns2 button:hover{
-    cursor: pointer;
+  .panelC .header {
+        grid-area: header;
+        align-items: center;
+  }
+
+  .panelC .header-left {
+        gap: 8px;
+        font-size: 14px;
+        flex-wrap: nowrap;
+    }
+
+    .panelC .header-left .username,
+    .panelC .header-left .created-at {
+        white-space: nowrap;
+    }
+
+    .panelC article {
+        grid-area: article;
+    }
+
+    .panelC .counter {
+        grid-area: counter;
+        min-height: 40px;
+        width: auto;
+        padding: 8px 12px;
+        flex-direction: row;
+        gap: 16px;
+        justify-self: start;
+        align-self: center;
+    }
+
+    .panelC .btns2 {
+        grid-area: actions;
+        justify-content: flex-end;
+        align-self: center;
   }
 }

@@ -1,21 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../styles/PanelD.css';
 
 export default function PanelD({ comment, user, isVisible, variant, onUpdateClick }) {
   const [draft, setDraft] = useState(comment?.content ?? '');
-
-  const windowWidth = window.innerWidth;
-  const panelStyle = windowWidth <= 768
-     ? variant === 'A'
-       ? { width: '94%', marginLeft: '0px' }
-       : { width: '88%', marginLeft: '20px' }
-     : variant === 'A'
-       ? { width: '720px', marginLeft: '-20px'}
-       : { width: '665px', marginLeft: '50px' };
-
-  useEffect(() => {
-    setDraft(comment?.content ?? '');
-  }, [comment]);
+  const panelClassName = variant === 'B' ? 'panelD panelD--reply' : 'panelD';
 
   const updateClickHandler = () => {
     const trimmedDraft = draft.trim();
@@ -30,7 +18,7 @@ export default function PanelD({ comment, user, isVisible, variant, onUpdateClic
   if (!isVisible) return null;
 
   return (
-    <section className="panelD" style={panelStyle}>
+    <section className={panelClassName}>
       <img src={user.image.png} alt="User Avatar" className="avatar" />
       <textarea
         className="comment-text"

@@ -4,18 +4,8 @@ import Dialog from "./Dialog";
 import { formatRelativeTime } from '../utils/formatRelativeTime';
 
 export default function PanelC({ comment, onEditClick, onDeleteClick, onVoteClick, isVotePending, variant }) {
-  
+  const panelClassName = variant === 'B' ? 'panelC panelC--reply' : 'panelC';
   const [clicked, setClicked] = useState(false);
-
-  const windowWidth = window.innerWidth;
-  const panelStyle =
-   windowWidth <= 768
-     ? variant === 'A'
-       ? { width: '92%', marginLeft: '0px' }
-       : { width: '88%', marginLeft: '20px' }
-     : variant === 'A'
-       ? { width: '720px', marginLeft: '-20px'}
-       : { width: '660px', marginLeft: '50px' };
 
 
   function editClickHandler() {
@@ -60,7 +50,7 @@ export default function PanelC({ comment, onEditClick, onDeleteClick, onVoteClic
  
 
   return (<>
-    <section className="panelC" style={panelStyle}>
+    <section className={panelClassName}>
 
       <div className="counter" aria-busy={isVotePending}> 
         <span><svg width="11" height="11" onClick={upvoteClickHandler} xmlns="http://www.w3.org/2000/svg"><path d="M6.33 10.896c.137 0 .255-.05.354-.149.1-.1.149-.217.149-.354V7.004h3.315c.136 0 .254-.05.354-.149.099-.1.148-.217.148-.354V5.272a.483.483 0 0 0-.148-.354.483.483 0 0 0-.354-.149H6.833V1.4a.483.483 0 0 0-.149-.354.483.483 0 0 0-.354-.149H4.915a.483.483 0 0 0-.354.149c-.1.1-.149.217-.149.354v3.37H1.08a.483.483 0 0 0-.354.15c-.1.099-.149.217-.149.353v1.23c0 .136.05.254.149.353.1.1.217.149.354.149h3.333v3.39c0 .136.05.254.15.353.098.1.216.149.353.149H6.33Z" fill="currentColor"/></svg></span>
@@ -74,7 +64,11 @@ export default function PanelC({ comment, onEditClick, onDeleteClick, onVoteClic
               <p className="username">{comment.user.username}</p>
               <p className="created-at">{formatRelativeTime(comment.createdAt)}</p>
              </div>
-           <div className='btns2'>
+          </div>
+          <article>
+            <p className="content">{comment.content}</p>
+          </article>
+          <div className='btns2'>
              <button className="delete-button" onClick={deleteClickHandler}>
                 <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M1.167 12.448c0 .854.7 1.552 1.555 1.552h6.222c.856 0 1.556-.698 1.556-1.552V3.5H1.167v8.948Zm10.5-11.281H8.75L7.773 0h-3.88l-.976 1.167H0v1.166h11.667V1.167Z" fill="#ED6368"/></svg>
                 Delete
@@ -84,10 +78,6 @@ export default function PanelC({ comment, onEditClick, onDeleteClick, onVoteClic
                 Edit
              </button>
           </div>
-          </div>
-          <article>
-            <p className="content">{comment.content}</p>
-          </article>
       </div>
       
     </section>
