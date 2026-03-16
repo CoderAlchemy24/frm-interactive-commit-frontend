@@ -1,0 +1,23 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --grey-800: #334253;
+  --grey-500: #67727E;
+  --grey-100: #E9FBF0;
+  --grey-50: #F5F6FA;
+  --purple-600: #5357B6;
+  --purple-200: #C5C6EF;
+  --pink-400: #ED6368;
+  --pink-200: #FFB8BD;
+
+  --spacing-100: 8px;
+  --spacing-200: 16px;
+  --spacing-300: 24px;
+  --spacing-500: 40px;
+}
+
+body{
+    background-color: var(--grey-50);
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,73 @@
+.dialog-overlay{
+    width: 400px;
+    height: 252px;
+    background: #FFFFFF;
+    padding:50px;
+    border: 1px solid var(--grey-500);
+    border-radius: 8px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dialog{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: var(--spacing-300);
+    margin: 0 auto;}
+
+.dialog h2{
+    color: #000;
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.dialog p{
+    color: var(--grey-500);
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    position: relative;
+    top: -15px;
+}
+
+.btns{
+    width: 100%;;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-200);
+
+}
+
+.btns button{
+    color: var(--white);
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    text-transform: uppercase;
+     width: 100%;
+    height: 48px;
+    border:none;
+    border-radius: 8px;
+}
+
+.btns .cancel-btn{
+   background-color: var(--grey-500);
+    
+}
+
+.btns .delete-btn{
+    background-color: var(--pink-400);  
+}
+

@@ -1,0 +1,40 @@
+
+
+.app{
+    width: 720px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    align-items: center;
+    gap: 0;
+}
+
+.reply-thread {
+  position: relative;
+  margin-left: 0px;
+  padding-left: 0px; 
+  
+}
+
+.reply-thread::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom:10px;
+  left: 20px;
+  width: 1px;
+  background: var(--purple-200);
+}
+
+@media screen and (max-width: 600px) {
+  .app {
+    width: 96%;
+    margin: 10px auto;
+    padding: 0 10px;
+  }
+
+  .reply-thread::before {
+    left: 10px;
+  }
+}

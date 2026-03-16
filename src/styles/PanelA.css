@@ -1,0 +1,143 @@
+.panelA{
+    width:100%;
+    height:167px;
+    background-color: #fff;
+    border-radius: 8px;
+    color: var(--grey-500);
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    
+    gap: 16px;
+   
+    padding: 24px 24px 24px 24px;
+    margin: 16px;
+
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+   
+}
+
+.counter{
+    position: relative;
+    top: 10px;
+    width:40px;
+    height:160px;
+    background-color: var(--grey-50);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+}
+
+.counter span svg{
+    color: var(--purple-600);
+}
+
+.counter span svg:hover{
+    cursor: pointer;
+    color: var(--grey-800);
+}
+
+.counter .score{
+    color: var(--purple-600);
+    font-weight: 500;
+}
+
+.header, .header-left{
+    position:relative;
+    top:-6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0 10px 0;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+}
+
+.username{
+    color: var(--grey-500);
+    font-weight: 500;
+}
+
+.header img.avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.header button{
+    position:relative;
+    top:-6px;
+    justify-self: flex-end;
+    padding: 8px 12px;
+    border: none;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:6px;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--purple-600)
+}
+
+.header button:hover{
+    color: var(--grey-800);
+    cursor: pointer;
+}
+
+article{
+    position: relative;
+    top:-36px;
+
+    
+    color: var(--color-500);
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+}
+
+@media screen and (max-width: 600px) {
+  .panelA {
+    width: 90%;
+    height: auto;
+    margin: 10px auto;
+    padding: 0 10px;
+  }
+
+  .header{
+    flex-wrap: wrap; }
+   .header-left{
+    width:94%;
+  
+    font-size: 12px;
+    justify-content: space-around;
+  }
+
+  .header button{
+    left: 70%;
+    top: 180px;
+    font-size: 14px;
+  }
+    .content{
+        width: 92%;
+        position: relative;
+        top:-40px;
+    }
+}
