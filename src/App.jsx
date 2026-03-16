@@ -13,8 +13,6 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({});
   const [comments, setComments] = useState([]);
-  const [isInitialLoading, setIsInitialLoading] = useState(true);
-  const [requestError, setRequestError] = useState('');
   const [activeReplyId, setActiveReplyId] = useState(null);
   const [activeEditId, setActiveEditId] = useState(null);
   const [pendingVoteIds, setPendingVoteIds] = useState(() => new Set());
@@ -32,18 +30,12 @@ function App() {
 
       const data = await response.json();
       setComments(data);
-      setRequestError('');
-      return true;
     } catch (error) {
       console.error('Error fetching comments:', error);
-      setRequestError('Unable to load comments right now. Please refresh and try again.');
-      return false;
     }
   }, []);
 
   useEffect(() => {
-    let isMounted = true;
-
     const fetchCurrentUser = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/users`);
@@ -53,28 +45,17 @@ function App() {
         }
 
         const data = await response.json();
-        if (isMounted) {
-          setCurrentUser(data);
-        }
+        setCurrentUser(data);
       } catch (error) {
         console.error('Error fetching current user:', error);
       }
     };
 
-    const loadInitialData = async () => {
-      setIsInitialLoading(true);
-      await Promise.all([fetchCurrentUser(), fetchComments()]);
+    fetchCurrentUser();
+  }, []);
 
-      if (isMounted) {
-        setIsInitialLoading(false);
-      }
-    };
-
-    loadInitialData();
-
-    return () => {
-      isMounted = false;
-    };
+  useEffect(() => {
+    fetchComments();
   }, [fetchComments]);
 
  const handleReplyToggle = (id) => {
@@ -300,25 +281,9 @@ function App() {
   const isCurrentUser = (item) =>
     currentUser?.username && currentUser.username === item?.user?.username;
 
-  if (isInitialLoading) {
-    return (
-      <section className="app app--status">
-        <p className="app-status" role="status">Loading comments...</p>
-      </section>
-    );
-  }
-
  
   return (
     <section className="app">
-      {requestError && (
-        <p className="app-status app-status--error" role="alert">{requestError}</p>
-      )}
-
-      {!requestError && comments.length === 0 && (
-        <p className="app-status" role="status">No comments available.</p>
-      )}
-
       {comments.map((comment) => {
         const ownComment = isCurrentUser(comment);
 
